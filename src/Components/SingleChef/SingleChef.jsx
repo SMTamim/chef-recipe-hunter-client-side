@@ -1,7 +1,5 @@
 import React from "react";
 
-import recepieImg1 from "../../assets/images/recepie_1.jpg";
-import recepieImg2 from "../../assets/images/recepie_2.jpg";
 import { FaThumbsUp } from "react-icons/fa";
 
 const SingleChef = ({ chef }) => {
