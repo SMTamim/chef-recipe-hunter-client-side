@@ -30,7 +30,7 @@ const SingleChef = ({ chef }) => {
           </div>
         </div>
         <div className="items-center justify-center card-actions">
-          <button className="w-full btn btn-primary">View All</button>
+          <button className="w-full btn btn-primary">View All Recipes</button>
         </div>
       </div>
     </div>
