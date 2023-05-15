@@ -19,7 +19,7 @@ const ChefSection = () => {
       <h3 className='w-full mb-10 text-4xl font-extrabold text-center'>Our Popular Chefs</h3>
       <div className="grid gap-2 place-items-center md:grid-cols-2 lg:grid-cols-3">
         {
-          chefs.map(chef=> <SingleChef
+          chefs.slice(0, 6).map(chef=> <SingleChef
             key={chef.id}
             chef={chef}
           />)

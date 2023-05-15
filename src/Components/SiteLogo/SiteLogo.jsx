@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 
 const SiteLogo = () => {
   return (
-    <Link className="" to="/">
+    <Link className="text-5xl" to="/">
       <div className="flex items-center justify-center">
-        <span className="block text-xl font-bold">Chef</span>
+        <span className="block text-5xl font-bold">Chef</span>
         <img src={siteLogo} alt="" className="block mx-2" />
-        <span className="text-xl font-bold">Khujun</span>
+        <span className="text-5xl font-bold">Khujun</span>
       </div>
     </Link>
   );
