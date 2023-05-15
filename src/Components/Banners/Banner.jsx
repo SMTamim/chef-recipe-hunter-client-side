@@ -4,7 +4,7 @@ import foodImg from '../../assets/images/food1.jpg';
 
 const Banner = () => {
   return (
-    <div className="px-20 mt-5 lg:px-40">
+    <div className="">
       <div className="w-full rounded-lg carousel">
         <div id="item1" className="w-full carousel-item">
           <img

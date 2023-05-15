@@ -1,10 +1,12 @@
 import React from 'react';
-import Banner from '../../Components/Banner/Banner';
+import ChefSection from '../../Components/ChefSection/ChefSection';
+import Banner from '../../Components/Banners/Banner';
 
 const Home = () => {
   return (
-    <div>
+    <div className='px-20 mt-5 lg:px-40'>
       <Banner></Banner>
+      <ChefSection/>
     </div>
   );
 };
