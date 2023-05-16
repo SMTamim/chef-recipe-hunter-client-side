@@ -34,6 +34,7 @@ const AuthProvider = ({ children }) => {
       console.log(loggedUser);
       setUser(loggedUser);
     });
+    
     return ()=>{
       return unsubscribe();
     }
