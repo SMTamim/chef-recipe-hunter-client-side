@@ -1,6 +1,7 @@
 import React from "react";
 
 import { FaThumbsUp } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const SingleChef = ({ chef }) => {
   const { chefPicture, chefName, yearsOfExperience, numberOfRecipes, likes } =
@@ -28,7 +29,7 @@ const SingleChef = ({ chef }) => {
           </div>
         </div>
         <div className="items-center justify-center card-actions">
-          <button className="w-full btn btn-primary">View All Recipes</button>
+          <Link to={`/chef/${chef.id}`}> <button className="w-full btn btn-primary">View All Recipes</button></Link>
         </div>
       </div>
     </div>
