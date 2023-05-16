@@ -1,7 +1,17 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, Navigate } from 'react-router-dom';
+import { AuthContext } from '../../providers/AuthProvider/AuthProvider';
+import Loading from '../Loading/Loading';
 
 const Register = () => {
+  const { user, loaded } = useContext(AuthContext);
+
+  if(!loaded)
+    return <Loading/>;
+
+  if(user) {
+    return <Navigate to='/'/>
+  };
 
   const handleSubmit = (event)=>{
     event.preventDefault();
@@ -16,15 +26,15 @@ const Register = () => {
 
   return (
     <div className="px-20 mt-5 lg:px-40">
-      <div className="card w-full bg-gray-900 text-primary-content">
+      <div className="w-full bg-gray-900 card text-primary-content">
         <div className="card-body">
-          <h2 className="card-title text-4xl mb-5">Register Here</h2>
+          <h2 className="mb-5 text-4xl card-title">Register Here</h2>
           <form action="" onSubmit={handleSubmit}>
             <div className="flex w-full">
-              <div className="grid p-5 flex-grow card bg-base-300 rounded-box">
-              <div className="form-control mb-2">
+              <div className="grid flex-grow p-5 bg-gray-800 card rounded-box">
+              <div className="mb-2 form-control">
                   <label className="input-group input-group-vertical">
-                    <span>Name</span>
+                    <span className="label-text">Name</span>
                     <input
                       type="text"
                       name="name"
@@ -34,9 +44,9 @@ const Register = () => {
                     />
                   </label>
                 </div>
-                <div className="form-control mb-2">
+                <div className="mb-2 form-control">
                   <label className="input-group input-group-vertical">
-                    <span>Email</span>
+                    <span className="label-text">Email</span>
                     <input
                       type="text"
                       name="email"
@@ -46,9 +56,9 @@ const Register = () => {
                     />
                   </label>
                 </div>
-                <div className="form-control mb-2">
+                <div className="mb-2 form-control">
                   <label className="input-group input-group-vertical">
-                    <span>Password</span>
+                    <span className="label-text">Password</span>
                     <input
                       type="password"
                       name="password"
@@ -58,9 +68,9 @@ const Register = () => {
                     />
                   </label>
                 </div>
-                <div className="form-control mb-2">
+                <div className="mb-2 form-control">
                   <label className="input-group input-group-vertical">
-                    <span>Photo URL</span>
+                    <span className="label-text">Photo URL</span>
                     <input
                       type="text"
                       name="photo_url"
@@ -70,7 +80,7 @@ const Register = () => {
                     />
                   </label>
                 </div>
-                <div className="flex justify-center items-center mt-5">
+                <div className="flex items-center justify-center mt-5">
                   <button className="btn btn-wide">Sign-up</button>
                 </div>
               </div>

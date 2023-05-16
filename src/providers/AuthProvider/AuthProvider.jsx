@@ -14,6 +14,8 @@ export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loaded, setLoaded] = useState(false);
+
   const githubProvider = new GithubAuthProvider();
   const googleProvider = new GoogleAuthProvider();
 
@@ -33,6 +35,7 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, loggedUser=>{
       console.log(loggedUser);
       setUser(loggedUser);
+      setLoaded(true);
     });
     
     return ()=>{
@@ -44,7 +47,8 @@ const AuthProvider = ({ children }) => {
     user,
     handleGithubSignIn,
     handleGoogleSignIn,
-    logOut
+    logOut,
+    loaded
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
