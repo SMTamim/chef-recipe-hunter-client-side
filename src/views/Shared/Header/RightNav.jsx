@@ -14,11 +14,14 @@ const RightNav = () => {
         Blog
       </Link>
       {user ? (
-        <Link to="/profile">
-          <FaUserTie
-            style={{ height: "40px" }}
-            className="rounded-lg"
-          ></FaUserTie>
+        <Link to="/profile" className="block">
+          <div className="tooltip tooltip-primary" data-tip={user.displayName}>
+            <div className="avatar">
+              <div className="w-8 rounded">
+              {user.photoURL? <img src={user.photoURL} alt={user.displayName} />: <FaUserTie/> }
+              </div>
+            </div>
+          </div>
         </Link>
       ) : (
         <Link to="/login" className="mr-4 link link-info">

@@ -1,13 +1,18 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { RxDividerHorizontal } from "react-icons/rx";
 import { GoMarkGithub } from "react-icons/go";
 import { AuthContext } from "../../providers/AuthProvider/AuthProvider";
 
 const Login = () => {
-  const { handleGithubSignIn, handleGoogleSignIn } = useContext(AuthContext);
+  const { user, handleGithubSignIn, handleGoogleSignIn } = useContext(AuthContext);
 
+  if(user) {
+    console.log(user);
+    console.log("Navigating to home");
+    return <Navigate to='/'/>
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
