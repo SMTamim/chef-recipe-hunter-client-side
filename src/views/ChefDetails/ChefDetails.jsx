@@ -11,7 +11,7 @@ const ChefDetails = () => {
 
   useEffect(() => {
     const fetchChef = async () => {
-      const res = await fetch(`http://localhost:3000/chefs/${id}`);
+      const res = await fetch(`https://chef-recipe-hunter-server-smtamim.vercel.app/chefs/${id}`);
       const chefData = await res.json();
       setChef(chefData);
     };
