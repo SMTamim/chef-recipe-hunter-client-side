@@ -33,7 +33,7 @@ const RightNav = () => {
       </NavLink>
       {user ? (
         <>
-          <NavLink to="/profile" className="block mr-4">
+          <NavLink to="/#" className="block mr-4">
             <div
               className="tooltip tooltip-primary"
               data-tip={user.displayName}
