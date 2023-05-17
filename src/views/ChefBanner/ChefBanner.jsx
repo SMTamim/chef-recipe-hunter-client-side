@@ -1,61 +1,39 @@
 import React from "react";
+import { FaThumbsUp, FaList } from "react-icons/fa";
 
-const ChefBanner = ({chef}) => {
+const ChefBanner = ({ chef }) => {
   return (
-    <div className="w-full shadow stats">
-      <div className="stat">
-        <div className="stat-figure text-primary">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            className="inline-block w-8 h-8 stroke-current"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-            ></path>
-          </svg>
+    <div className="w-full text-gray-100 bg-gray-900 shadow stats">
+      <div className="grid stat place-items-center">
+        <div className="flex stat-value text-primary">
+          {chef.likes} <FaThumbsUp className="ml-5" />
         </div>
-        <div className="stat-title">Total Likes</div>
-        <div className="stat-value text-primary">{chef.likes}</div>
-        <div className="stat-desc">21% more than last month</div>
       </div>
 
-      <div className="stat">
-        <div className="stat-figure text-secondary">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            className="inline-block w-8 h-8 stroke-current"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M13 10V3L4 14h7v7l9-11h-7z"
-            ></path>
-          </svg>
+      <div className="grid border-gray-200 stat place-items-center">
+        <div className="stat-value text-secondary">
+          {chef.numberOfRecipes} <span className="text-gray-200">Recipes</span>
         </div>
-        <div className="stat-title">Total Recipes</div>
-        <div className="stat-value text-secondary">{chef.numberOfRecipes}</div>
         {/* <div className="stat-desc">21% more than last month</div> */}
       </div>
 
-      <div className="stat">
+      <div className="justify-between border-gray-200 stat">
         <div className="stat-figure text-secondary">
           <div className="avatar">
-            <div className="w-16 rounded-full">
+            <div className="rounded-full w-80">
               <img src={chef.chefPicture} />
             </div>
           </div>
         </div>
-        <div className="stat-value">{chef.yearsOfExperience}</div>
-        <div className="stat-title">years</div>
-        <div className="stat-desc text-secondary">of experience</div>
+        <div className="stat-value">
+          {chef.yearsOfExperience} <span className="text-orange-400">years</span>{" "}
+          <br /> <div className="stat-desc text-secondary">of experience</div>{" "}
+        </div>
+        <div className="flex flex-col mt-2">
+          <h2 className="text-5xl font-bold">{chef.chefName}</h2>
+          <h4 className="mb-2 font-bold mt-14">About {chef.chefName}:</h4>
+          <p className="pl-5 text-justify">{chef.bio}</p>
+        </div>
       </div>
     </div>
   );

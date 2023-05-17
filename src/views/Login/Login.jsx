@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { RxDividerHorizontal } from "react-icons/rx";
 import { GoMarkGithub } from "react-icons/go";
@@ -8,12 +8,15 @@ import Loading from "../Loading/Loading";
 
 const Login = () => {
   const { user, handleGithubSignIn, handleGoogleSignIn, loaded } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
+
   if(!loaded)
     return <Loading/>;
   if(user) {
     console.log(user);
-    console.log("Navigating to home");
-    return <Navigate to='/'/>
+    return <Navigate to={from} replace={true}/>
   };
   const handleSubmit = (event) => {
     event.preventDefault();

@@ -17,9 +17,9 @@ const ChefSection = () => {
   return (
     <div className="flex flex-col w-full my-5">
       <h3 className='w-full mb-10 text-4xl font-extrabold text-center text-gray-300'>Our Popular Chefs</h3>
-      <div className="grid gap-2 place-items-center md:grid-cols-2 lg:grid-cols-3">
+      <div className="flex flex-wrap items-center justify-center ">
         {
-          chefs.slice(0, 6).map(chef=> <SingleChef
+          chefs.map(chef=> <SingleChef
             key={chef.id}
             chef={chef}
           />)

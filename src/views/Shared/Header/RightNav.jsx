@@ -4,7 +4,7 @@ import { FaUserTie } from "react-icons/fa";
 import { AuthContext } from "../../../providers/AuthProvider/AuthProvider";
 
 const RightNav = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut, loaded } = useContext(AuthContext);
   return (
     <div className="flex items-center justify-center">
       <Link to="/" className="mr-4 link link-info">
@@ -13,7 +13,7 @@ const RightNav = () => {
       <Link to="/blog" className="mr-4 link link-info">
         Blog
       </Link>
-      {user ? (
+      {(user) ? (
         <>
           <Link to="/profile" className="block mr-4">
             <div
@@ -36,9 +36,10 @@ const RightNav = () => {
           </button>
         </>
       ) : (
+        loaded?
         <Link to="/login" className="mr-4 link link-info">
           Login
-        </Link>
+        </Link>: ''
       )}
     </div>
   );

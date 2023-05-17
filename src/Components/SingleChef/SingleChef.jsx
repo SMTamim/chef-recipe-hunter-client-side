@@ -7,7 +7,7 @@ const SingleChef = ({ chef }) => {
   const { chefPicture, chefName, yearsOfExperience, numberOfRecipes, likes } =
     chef;
   return (
-    <div className="my-5 text-gray-400 shadow-xl card w-96 md:w-72 bg-gray-950">
+    <div className="my-5 mr-5 text-gray-400 shadow-xl card w-96 md:w-72 bg-gray-950">
       <figure>
         <img
           style={{ height: "300px", width: "100%" }}
