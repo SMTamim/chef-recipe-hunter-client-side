@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { FaUserTie } from "react-icons/fa";
 import { AuthContext } from "../../../providers/AuthProvider/AuthProvider";
 
@@ -7,15 +7,33 @@ const RightNav = () => {
   const { user, logOut, loaded } = useContext(AuthContext);
   return (
     <div className="flex items-center justify-center">
-      <Link to="/" className="mr-4 link link-info">
+      <NavLink
+        to="/"
+        className={({ isActive, isPending }) =>
+          isPending
+            ? "mr-4 link link-info"
+            : isActive
+            ? "mr-4 link link-secondary"
+            : "mr-4 link link-info"
+        }
+      >
         Home
-      </Link>
-      <Link to="/blog" className="mr-4 link link-info">
+      </NavLink>
+      <NavLink
+        to="/blog"
+        className={({ isActive, isPending }) =>
+          isPending
+            ? "mr-4 link link-info"
+            : isActive
+            ? "mr-4 link link-secondary"
+            : "mr-4 link link-info"
+        }
+      >
         Blog
-      </Link>
-      {(user) ? (
+      </NavLink>
+      {user ? (
         <>
-          <Link to="/profile" className="block mr-4">
+          <NavLink to="/profile" className="block mr-4">
             <div
               className="tooltip tooltip-primary"
               data-tip={user.displayName}
@@ -30,16 +48,31 @@ const RightNav = () => {
                 </div>
               </div>
             </div>
-          </Link>
-          <button className="link link-info" onClick={()=>{logOut()}}>
+          </NavLink>
+          <button
+            className="link link-info"
+            onClick={() => {
+              logOut();
+            }}
+          >
             Logout
           </button>
         </>
-      ) : (
-        loaded?
-        <Link to="/login" className="mr-4 link link-info">
+      ) : loaded ? (
+        <NavLink
+          to="/login"
+          className={({ isActive, isPending }) =>
+          isPending
+            ? "mr-4 link link-info"
+            : isActive
+            ? "mr-4 link link-secondary"
+            : "mr-4 link link-info"
+        }
+        >
           Login
-        </Link>: ''
+        </NavLink>
+      ) : (
+        ""
       )}
     </div>
   );

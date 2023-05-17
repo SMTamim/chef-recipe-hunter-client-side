@@ -5,9 +5,12 @@ import { RxDividerHorizontal } from "react-icons/rx";
 import { GoMarkGithub } from "react-icons/go";
 import { AuthContext } from "../../providers/AuthProvider/AuthProvider";
 import Loading from "../Loading/Loading";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const Login = () => {
-  const { user, handleGithubSignIn, handleGoogleSignIn, loaded } = useContext(AuthContext);
+  const MySwal = withReactContent(Swal);
+  const { user, loaded, handleGithubSignIn, handleGoogleSignIn, signInUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || '/';
@@ -24,6 +27,14 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log(email, password);
+    signInUser(email, password)
+    .then((user)=>{
+      MySwal.fire(<p>Logged in successfully!</p>)
+    })
+    .catch(err=>{
+      MySwal.fire(<p>Some error occurred</p>);
+      console.error(err);
+    })
   };
 
   return (
@@ -41,7 +52,7 @@ const Login = () => {
                       type="text"
                       name="email"
                       placeholder="Enter your email"
-                      className="input input-bordered"
+                      className="text-black input input-bordered"
                       required
                     />
                   </label>
@@ -56,7 +67,7 @@ const Login = () => {
                       type="password"
                       name="password"
                       placeholder="Enter your password"
-                      className="input input-bordered"
+                      className="text-black input input-bordered"
                       required
                     />
                   </label>
