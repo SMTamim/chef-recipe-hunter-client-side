@@ -19,7 +19,7 @@ const SingleRecipe = ({ recipe }) => {
       <figure >
         <img
           style={{maxHeight: "200px", minHeight: '200px', width: "100%"}}
-          src={`https://chef-recipe-hunter-server-smtamim.vercel.app/image/${recipe.recipeImage}`}
+          src={`${import.meta.env.VITE_API_ENDPOINT}/image/${recipe.recipeImage}`}
           alt={recipe.recipe_name}
         />
       </figure>

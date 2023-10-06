@@ -52,7 +52,9 @@ const RightNav = () => {
           <button
             className="link link-info"
             onClick={() => {
-              logOut();
+              logOut().then(()=>{
+                localStorage.removeItem('access_token');
+              });
             }}
           >
             Logout

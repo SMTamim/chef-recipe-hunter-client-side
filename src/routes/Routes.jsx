@@ -28,7 +28,7 @@ const router = createBrowserRouter([
       {
         path: 'chef/:id',
         element: <PrivateRoutes><ChefDetails/></PrivateRoutes>,
-        loader: ({ params }) => fetch(`https://chef-recipe-hunter-server-smtamim.vercel.app/recipes/${params.id}`)
+        loader: ({ params }) => fetch(`${import.meta.env.VITE_API_ENDPOINT}/recipes/${params.id}`)
       },
     ]
   },

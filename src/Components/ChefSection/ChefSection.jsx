@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import SingleChef from '../SingleChef/SingleChef';
+const API_ENDPOINT = import.meta.env.VITE_API_ENDPOINT;
 
 const ChefSection = () => {
 
   const [chefs, setChefs] = useState([]);
-
   useEffect(()=>{
-    fetch('https://chef-recipe-hunter-server-smtamim.vercel.app/chefs')
+    fetch(`${API_ENDPOINT}/chefs`)
     .then(res=>res.json())
     .then(data=> setChefs(data))
     .catch((err)=>{

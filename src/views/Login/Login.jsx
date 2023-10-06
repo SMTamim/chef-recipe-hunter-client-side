@@ -10,17 +10,16 @@ import withReactContent from "sweetalert2-react-content";
 
 const Login = () => {
   const MySwal = withReactContent(Swal);
-  const { user, loaded, handleGithubSignIn, handleGoogleSignIn, signInUser } = useContext(AuthContext);
+  const { user, loaded, handleGithubSignIn, handleGoogleSignIn, signInUser } =
+    useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || '/';
+  const from = location.state?.from?.pathname || "/";
 
-  if(!loaded)
-    return <Loading/>;
-  if(user) {
-    console.log(user);
-    return <Navigate to={from} replace={true}/>
-  };
+  if (!loaded) return <Loading />;
+  if (user) {
+    return <Navigate to={from} replace={true} />;
+  }
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -28,13 +27,30 @@ const Login = () => {
     const password = form.password.value;
     console.log(email, password);
     signInUser(email, password)
-    .then((user)=>{
-      MySwal.fire(<p>Logged in successfully!</p>)
-    })
-    .catch(err=>{
-      MySwal.fire(<p>Some error occurred</p>);
-      console.error(err);
-    })
+      .then((result) => {
+        const user = result.user;
+        const loggedUser = {
+          email: user.email,
+        };
+        fetch(`${import.meta.env.VITE_API_ENDPOINT}/jwt`, {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(loggedUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem('access_token', data.access_token);
+          });
+
+        MySwal.fire(<p>Logged in successfully!</p>);
+      })
+      .catch((err) => {
+        MySwal.fire(<p>Some error occurred</p>);
+        console.error(err);
+      });
   };
 
   return (
